@@ -16,6 +16,7 @@ public class ReplaceCharacter
 
     private string Replace(char[] input, int index)
     {
+        //close iteration
         if (index == input.Length) return new string(input);
         //validation
         if (!char.IsNumber(input[index])) throw new Exception("input is not a number");

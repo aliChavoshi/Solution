@@ -8,6 +8,6 @@ using ConsoleApp1.Strategy;
 var dictionary = new ReplaceCharacter().Replace("1001");
 Console.WriteLine(dictionary);
 //strategy Pattern
-// var replacementContext = new ReplacementContext(new ZeroReplacementStrategy());
-// var outputString = replacementContext.Replace(inputString);
-// Console.WriteLine(outputString); //1**1
+var replacementContext = new ReplacementContext(new ZeroReplacementStrategy());
+var outputString = replacementContext.Replace("1010");
+Console.WriteLine(outputString); 
