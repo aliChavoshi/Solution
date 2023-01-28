@@ -11,6 +11,8 @@ public class ZeroReplacementStrategy : IReplacementStrategy
 
     private static string Replace(char[] input, int index, StringBuilder sb)
     {
+
+        //
         if (index == input.Length) return new string(input);
         var value = input[index];
         //validation

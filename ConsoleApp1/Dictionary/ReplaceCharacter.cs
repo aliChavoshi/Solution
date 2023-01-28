@@ -1,4 +1,6 @@
-﻿namespace ConsoleApp1.Dictionary;
+﻿using System.Text;
+
+namespace ConsoleApp1.Dictionary;
 
 public class ReplaceCharacter
 {
@@ -6,26 +8,40 @@ public class ReplaceCharacter
 
     public ReplaceCharacter()
     {
-        _replaceDictionary = new Dictionary<char, char> { { '0', '*' } };
+        _replaceDictionary = new Dictionary<char, char>
+        {
+            { '0', '*' },
+            { '1', '1' },
+            { '2', '2' },
+            { '3', '3' },
+            { '4', '4' },
+            { '5', '5' },
+            { '6', '6' },
+            { '7', '7' },
+            { '8', '8' },
+            { '9', '9' },
+        };
     }
 
     public string Replace(string input)
     {
-        return Replace(input.ToCharArray(), 0);
+        var result = new StringBuilder();
+        Replace(input.ToCharArray(), 0, result);
+        return result.ToString();
     }
 
-    private string Replace(char[] input, int index)
+    private void Replace(IReadOnlyList<char> input, int index, StringBuilder result)
     {
-        //close iteration
-        if (index == input.Length) return new string(input);
-        //validation
-        if (!char.IsNumber(input[index])) throw new Exception("input is not a number");
-        //replace
-        if (_replaceDictionary.ContainsKey(input[index]))
-            input[index] = _replaceDictionary[input[index]];
-        //iteration
-        Replace(input, index + 1);
-        //return value
-        return new string(input);
+        try
+        {
+            if (result.Length == input.Count) return;
+            _replaceDictionary.TryGetValue(input[index], out char value);
+            Replace(input, index + 1, result.Append(value));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
