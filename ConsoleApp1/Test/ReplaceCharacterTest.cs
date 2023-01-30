@@ -40,7 +40,7 @@ public class ReplaceCharacterTests
     {
         var input = "hello";
 
-        Assert.Throws<Exception>(() => _replaceCharacter.Replace(input));
+        Assert.Throws<KeyNotFoundException>(() => _replaceCharacter.Replace(input));
     }
 
     [Fact]

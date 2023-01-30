@@ -40,7 +40,7 @@ public class ZeroReplacementStrategyTest
     {
         var input = "hello";
 
-        Assert.Throws<Exception>(() => _zeroReplacementStrategy.Replace(input));
+        Assert.Throws<KeyNotFoundException>(() => _zeroReplacementStrategy.Replace(input));
     }
 
     [Fact]

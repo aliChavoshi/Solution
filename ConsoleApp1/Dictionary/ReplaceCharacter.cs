@@ -19,24 +19,32 @@ public class ReplaceCharacter
             { '6', '6' },
             { '7', '7' },
             { '8', '8' },
-            { '9', '9' },
+            { '9', '9' }
         };
     }
 
     public string Replace(string input)
     {
-        var result = new StringBuilder();
-        Replace(input.ToCharArray(), 0, result);
-        return result.ToString();
+        var result = Replace(input.ToCharArray(), 0, input.Length, new StringBuilder());
+        return result;
     }
 
-    private void Replace(IReadOnlyList<char> input, int index, StringBuilder result)
+    private string Replace(IReadOnlyList<char> input, int index, int count, StringBuilder result)
     {
         try
         {
-            if (result.Length == input.Count) return;
-            _replaceDictionary.TryGetValue(input[index], out char value);
-            Replace(input, index + 1, result.Append(value));
+            var unused = result.Length / count;
+            var value = _replaceDictionary[input[index]];
+            return Replace(input, index + 1, --count, result.Append(value));
+        }
+        catch (DivideByZeroException e)
+        {
+            return result.ToString();
+        }
+        catch (KeyNotFoundException e)
+        {
+            Console.WriteLine("please just write number.");
+            throw;
         }
         catch (Exception e)
         {

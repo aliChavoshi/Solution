@@ -5,7 +5,7 @@ using ConsoleApp1.Dictionary;
 using ConsoleApp1.Strategy;
 
 //Dictionary Way
-var dictionary = new ReplaceCharacter().Replace("1001");
+var dictionary = new ReplaceCharacter().Replace("0000");
 Console.WriteLine(dictionary);
 //strategy Pattern
 var replacementContext = new ReplacementContext(new ZeroReplacementStrategy());
